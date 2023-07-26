@@ -1,0 +1,83 @@
+<div class="form1" >
+
+  <!--changing the below form as ngForm, because we have to get value from app.component.ts file
+  If i have used Javascript, then these are not needed-->
+  <form #form = "ngForm" >
+
+    <input class="search" type="text" placeholder="Search city" name="city" [(ngModel)] = "c">
+    <span>
+      <button class="btn" (click)="onsubmit(c)">⚡</button>
+    </span>
+  </form>
+
+  </div>
+
+
+
+<div class="container">
+
+  <div class="upper-box">
+
+    <img src="../assets/rainy.gif" alt="" *ngIf="myWeather.main.temp <= 24">
+    <img src="../assets/summer.gif" alt="" *ngIf="myWeather.main.temp > 24">
+
+    <div class="weather-data">
+      <div class="location"> {{myname}} </div>
+      <div class="temp" >{{mytemperature | number :'1.0-0'}}°C </div>
+      <img src="{{myicon}}" alt="weather icon"  style="height: 50px; width: 50px;">
+
+    </div>
+
+  </div>
+
+  <div class="lower-box">
+
+    <div class="more-info-label">More information : </div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/temperature.png" alt="">
+          <span>Min</span>
+        </div>
+        <div class="info-block-value">
+          <!--instead of creating a variable eg-'mymin' and using it here
+              we can directly write 'objectname.object.keyname'
+              here we can write 'myWeather.main.temp_min' instead of 'mymin'
+              We can get those variable names from component.ts file and
+              from the json API call(get code) (objects)-->
+              {{mymin | number :'1.0-0'}}°C
+          <!-- {{myWeather.main.temp_min | number :'1.0-0'}}°C -->
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/hot.png" alt="">
+          <span>Max</span>
+        </div>
+        <div class="info-block-value">
+          {{mymax | number :'1.0-0'}}°C
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png" alt="">
+          <span>Humidity</span>
+        </div>
+        <div class="info-block-value">
+          {{myhumidity}}%
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.png" alt="">
+          <span>Wind</span>
+        </div>
+        <div style="margin-left: -6px;" class="info-block-value">
+          ~{{mywindspeed | number :'1.0-0'}} km/hr
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
